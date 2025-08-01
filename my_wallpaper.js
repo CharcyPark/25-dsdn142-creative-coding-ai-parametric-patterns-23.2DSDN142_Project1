@@ -1,7 +1,7 @@
 //your parameter variables go here!
 let W=200
 let H=200
-let starSize=6
+let starSize=10
 let starCount=80
 let c1;
 let c2;
@@ -15,8 +15,8 @@ let c9;
 
 
 function setup_wallpaper(pWallpaper) {
-  //pWallpaper.output_mode(DEVELOP_GLYPH);
-  pWallpaper.output_mode(GRID_WALLPAPER);
+  pWallpaper.output_mode(DEVELOP_GLYPH);
+  //pWallpaper.output_mode(GRID_WALLPAPER);
   
   pWallpaper.resolution(FIT_TO_SCREEN);
   pWallpaper.show_guide(false); //set this to false when you're ready to print
@@ -55,7 +55,10 @@ function setup_framework(){
 let borderWidth=10
 let spacing=15
 angleMode(DEGREES)
-//draw many stars
+if (starCount>40) {
+  drawExtraDecoration()
+
+}
 
 for (let i=0; i<starCount;i++) {
   let xPos=random(0,borderWidth-1);
@@ -67,6 +70,31 @@ for (let i=0; i<starCount;i++) {
 
 drawCornerDecoration()
   pop();}
+
+}
+function drawExtraDecoration() {
+  let size=random(4,8)
+  let myColors=[c1,c2,c3,c4,c5,c6,c7,c8,c9];
+  let randomColor=random(myColors)
+  noStroke()
+  fill(randomColor)
+  push()//left corner
+  translate(10,H-10)
+  rotate(36)
+  for(let i=0; i<5; i++) {
+    ellipse(0,0,size/2,size*1.2)
+    rotate(72)
+  }
+  pop()
+  //right corner
+  push()
+  translate(W-10,10)
+  rotate(36)
+  for(let i=0; i<5; i++) {
+    ellipse(0,0,size/2,size*1.2)
+    rotate(72)
+  }
+  pop()
 
 }
 function drawCornerDecoration() {
@@ -129,6 +157,11 @@ setup_drawStars()
 function setup_drawStars(){
   angleMode(DEGREES)
 //draw many stars
+if (starCount>70) {
+  starSize=5
+} else{
+  starSize=starSize
+}
 for (let i=0; i<starCount;i++) {
   let xPos=random(20,W-20);
   let yPos=random(20,H*7/8);//random x,y but in the up part
