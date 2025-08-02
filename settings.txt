@@ -1,13 +1,4 @@
-You will need to fill out this file for hand in. 
-
-The bellow is just an example, feel free to disregard this documents contents.
-
-
-Your final settings.txt will look something like this when you are finished:
-
-/////////////////////////////////
-
-Wallpaper 1:
+Wallpaper 1:Star
 
 //your parameter variables go here!
 let rect_width  = 20;
@@ -31,7 +22,7 @@ function setup_wallpaper(pWallpaper) {
 
 /////////////////////////////////
 
-Wallpaper 2:
+Wallpaper 2: Orange
 
 //your parameter variables go here!
 let rect_width  = 10;
@@ -51,4 +42,36 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.grid_settings.cell_width  = 100;
   pWallpaper.grid_settings.cell_height = 100;
   pWallpaper.grid_settings.row_offset  = 0;
+}
+Wallpaper3 Panda
+//your parameter variables go here!
+let eyeSize=29
+let mouthType=0//(0 , 1 or other num)
+let earPosition=30
+let blush=50
+let showSparkle=true
+let eyePositionX=65
+let eyePositionY=80
+let heartNum=50
+let size;
+let x;
+let y;
+
+
+
+function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  
+  pWallpaper.resolution(FIT_TO_SCREEN);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width  = 200;
+  pWallpaper.grid_settings.cell_height = 200;
+  pWallpaper.grid_settings.row_offset  = 50;
+}
+
+function wallpaper_background() {
+  background(151, 222, 177); //light honeydew green colour
 }
