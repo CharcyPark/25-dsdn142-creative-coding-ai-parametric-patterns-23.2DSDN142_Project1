@@ -1,17 +1,15 @@
 //your parameter variables go here!
-
-let orangeSize=76;
-let shinePos=30
-let showShine=true;
-let x=10
-let y=10
-let shineX=x-orangeSize/4+shinePos/50;
-  let shineY=y-orangeSize/4;
-let midX=100
-let midY=100
-
-
-
+let eyeSize=29
+let mouthType=0//(0 , 1 or other num)
+let earPosition=30
+let blush=50
+let showSparkle=true
+let eyePositionX=65
+let eyePositionY=80
+let heartNum=50
+let size;
+let x;
+let y;
 
 
 
@@ -29,119 +27,107 @@ function setup_wallpaper(pWallpaper) {
 }
 
 function wallpaper_background() {
-  background(255,255,127); //light honeydew green colour
+  background(151, 222, 177); //light honeydew green colour
 }
-
 
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
-//draw orange
-drawOrange()
+//line(0,50,200,50)
+//line(0,100,200,100)
+//line(0,150,200,150)
+for (let i=0;i<heartNum;i++) {
+
+
+drawHeart(x,y,size)}
+drawPanda()
 }
-function drawOrange(){
-  angleMode(DEGREES)
-for(var x=orangeSize/2;x<2*midX-orangeSize/2;x=x+orangeSize*1.1) {//first line
 
-
-push()
-
-fill(255,165,0);
-stroke(210,105,30);
-strokeWeight(2)
-ellipse(x+15,y+orangeSize/2,orangeSize,orangeSize);
-stroke('wihte')
-strokeWeight(0.2)
-ellipse(x+15,y+orangeSize/2,orangeSize-1,orangeSize-1);
-stroke(210,117,86)
+function drawHeart(x,y,size) {
+size=random(2,8)
+x=random(0,200)
+y=random(0,200)
+stroke(207, 91, 116)
 strokeWeight(1)
-point(x+13,y+5)
-point(x+20,y+7)
-point(x+11,y+10)
-let shineX=x+15-orangeSize/4+shinePos/50;
-  let shineY=y+5+orangeSize*1/4;
-if (showShine){
-  
-  fill(255,255,200,180)
-  noStroke();
-  ellipse(shineX,shineY,orangeSize/3,orangeSize/3);
+    fill(255, 182, 193,random(150, 255))
+    push()
+    translate(x,y)
+    beginShape()
+    vertex(0,-size*0.8);
+    bezierVertex(size,-size*1.5,size*1.5,0,0,size*1.2)
+    bezierVertex(-size * 1.5, 0,-size, -size * 1.5,0, -size * 0.8
+      );
+      endShape(CLOSE);
+      pop();
+    
+}
+function drawPanda() {
+    //head
+    fill('white')
+    stroke(0)
+    strokeWeight(2)
+    ellipse(100,100,165,150)
+
+    //ears
+    fill(0)
+    noStroke()
+    ellipse(50,50-earPosition/2,60,50)//left
+    ellipse(150,50-earPosition/2,60,50)//right
+    //eyes
+    fill(0)
+    ellipse(70,90,eyeSize,eyeSize*1.5)//left black
+    ellipse(130,90,eyeSize,eyeSize*1.5)//right black
+    fill(46, 37, 29,200)
+    ellipse(eyePositionX,eyePositionY,eyeSize/2,eyeSize/2)//left eyes
+    ellipse(eyePositionX+60,eyePositionY,eyeSize/2,eyeSize/2)//right eyes
+    
+    //if
+    if (showSparkle) {
+        fill(235, 200, 169,80)
+        noStroke()
+        ellipse(eyePositionX-eyeSize/16,eyePositionY,eyeSize/8,eyeSize/8)//left
+        ellipse(eyePositionX+60-eyeSize/16,eyePositionY,eyeSize/8,eyeSize/8)//right      
+    }
+    //nose
+    
+    fill(0)
+    ellipse(100,115,25,20,190)
+    beginShape()
+    stroke(48, 47, 47)//light blace
+    strokeWeight(1)
+
+    //mouse
+    angleMode(DEGREES)
+    stroke(0)
+    strokeWeight(2)
+    noFill()
+    if (mouthType === 0) {
+        //sm
+        arc(100,130,60,40,0,180)
+
+    } else if (mouthType===1) {
+        //superised
+        stroke(232, 220, 223)
+        strokeWeight(2)
+        fill(237, 109, 137,180)
+        
+        ellipse(100,145,40,30,180,360)
+} else {
+    //UNHAPPY
+    strokeWeight(1.3)
+    arc(100,145,40,30,180,360)
+    let earPosition=30
+}
+    //BLUSH
+    if (blush>0) {
+        noStroke()
+        fill(255,150,150,blush*2.5)
+        //left
+        ellipse(50,120,30,20)
+        ellipse(150,120,30,20)
+
+
+    }
 
 }
-//draw leaves
-fill(34,139,34);
-noStroke();
-triangle(x+10,y+5,x,y+5-orangeSize/2,x+10,y-5)
-
-pop()
-}
-for(var x=orangeSize/2+5;x<2*midX-orangeSize/2;x=x+orangeSize*1.1) {//second line
 
 
-push()
 
-fill(255,165,0);
-stroke(210,105,30);
-strokeWeight(2)
-ellipse(x,y+2*orangeSize,orangeSize,orangeSize);
-stroke('wihte')
-strokeWeight(0.2)
-ellipse(x,y+2*orangeSize,orangeSize-1,orangeSize-1);
-stroke(210,117,86)
-strokeWeight(1)
-point(x+orangeSize/10,y-5+2*orangeSize)
-point(x+orangeSize/5,y-7+2*orangeSize)
-point(x+1,y-10+2*orangeSize)
-let shineX=x+orangeSize/5+shinePos/50;
-  let shineY=y-orangeSize/4+orangeSize/2;
-if (showShine){
-  
-  fill(255,255,200,180)
-  noStroke();
-  ellipse(shineX,shineY+2*orangeSize,orangeSize/3,orangeSize/3);
-
-}
-//draw leaves
-fill(34,139,34);
-noStroke();
-triangle(x-5,y+1.5*orangeSize,x-15,y+1.5*orangeSize-15,x-5,y+1.5*orangeSize-10)
-
-pop()
-}
-drawSigleSlice()
-}
-//draw orangeSlice
-function drawSigleSlice(){
-//orangeskin
-angleMode(DEGREES)
-for(var x=orangeSize/2+5;x<2*midX-orangeSize/2;x=x+orangeSize*1.3) {
-stroke(224,93,49);//skin color
-strokeWeight(3.5);//thickness of skin
-
-fill(255,150,0,150);
-
-ellipse(x,y+10+3*orangeSize,orangeSize,orangeSize);//slice position
-stroke('white');//highlight
-strokeWeight(0.3);
-ellipse(x,y+10+3*orangeSize,orangeSize-1,orangeSize-1);
-//inside of orange
-stroke(254,245,194);
-strokeWeight(2);
-fill(254,245,194,130);
-ellipse(x,y+10+3*orangeSize,orangeSize/10,orangeSize/10);
-strokeWeight(0.5);
-
-push()
-angleMode(DEGREES)
-let angle=45
-
-translate(x,y+10+3*orangeSize)
-noFill()
-stroke(254,245,194)
-strokeWeight(0.5)
-for (let i =0; i<8; i+=1){
-line(0,0,0,orangeSize-orangeSize/2-1);
-rotate(angle)
-
-}
-pop()
-}
-
-}
