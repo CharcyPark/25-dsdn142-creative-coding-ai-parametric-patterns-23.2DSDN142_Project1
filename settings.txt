@@ -181,6 +181,76 @@ function wallpaper_background() {
   background(17,24,42); 
   
 }
+wallpaper 7:
+
+//your parameter variables go here!
+let W=200
+let H=200
+let seedCount=30
+let seedLength=30
+let stemHeight=80
+let fluffiness=1.1//from 0.3-1.5 
+//if control
+let wind=true
+let windPower=50
+
+
+function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  
+  pWallpaper.resolution(FIT_TO_SCREEN);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width  = 200;
+  pWallpaper.grid_settings.cell_height = 200;
+  pWallpaper.grid_settings.row_offset  = 50;
+
+
+
+}
+
+function wallpaper_background() {
+  background(196, 242, 199); 
+  
+}
+
+Wallpaper 8:
+//your parameter variables go here!
+let isRaining=true
+let h=200
+let w=200
+let leafCount=4
+let rainCount=60
+let pondDepth=0.5
+let size=30
+let midx=100
+let midy=100
+
+function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  
+  pWallpaper.resolution(FIT_TO_SCREEN);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width  = 200;
+  pWallpaper.grid_settings.cell_height = 200;
+  pWallpaper.grid_settings.row_offset  = 50;
+
+
+
+}
+
+function wallpaper_background() {
+  background(152, 179, 159); 
+  
+}
+wallpaper9:
+
+
 
 
 
