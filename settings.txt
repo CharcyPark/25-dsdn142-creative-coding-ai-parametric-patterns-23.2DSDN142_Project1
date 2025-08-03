@@ -102,3 +102,44 @@ let c8;
 let c9;
 let starSize=10//background stars
 let starcount=50//background stars
+
+Wallpaper 5:
+
+//your parameter variables go here!
+//position control
+let midx=100
+let midy=100
+//size control
+let outerR=50
+let innerR=outerR*0.7
+//corner style control
+let smoothness=0.8
+//if control eye direction to show different emotions
+let emotionType=1 //0,1,otherNum
+let c1;
+let c2;
+let c3;
+let c4;
+let c5;
+let c6;
+let c7;
+let c8;
+let c9;
+let flowerSize=6//background stars
+let flowernum=200//background stars
+function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  
+  pWallpaper.resolution(FIT_TO_SCREEN);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width  = 200;
+  pWallpaper.grid_settings.cell_height = 200;
+  pWallpaper.grid_settings.row_offset  = 50;
+
+}
+Wallpaper 6:
+
+
