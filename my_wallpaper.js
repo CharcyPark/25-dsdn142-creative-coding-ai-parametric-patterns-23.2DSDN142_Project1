@@ -1,18 +1,25 @@
 //your parameter variables go here!
-let eyeSize=29
-let mouthType=0//(0 , 1 or other num)
-let earPosition=30
-let blush=50
-let showSparkle=true
-let eyePositionX=65
-let eyePositionY=80
-let heartNum=50
-let size;
-let x;
-let y;
-
-
-
+//position control
+let midx=100
+let midy=100
+//size control
+let outerR=50
+let innerR=outerR*0.7
+//corner style control
+let smoothness=0.8
+//if control eye direction to show different emotions
+let emotionType=0 //0,1,otherNum
+let c1;
+let c2;
+let c3;
+let c4;
+let c5;
+let c6;
+let c7;
+let c8;
+let c9;
+let starSize=10//background stars
+let starcount=50//background stars
 function setup_wallpaper(pWallpaper) {
   //pWallpaper.output_mode(DEVELOP_GLYPH);
   pWallpaper.output_mode(GRID_WALLPAPER);
@@ -24,110 +31,168 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.grid_settings.cell_width  = 200;
   pWallpaper.grid_settings.cell_height = 200;
   pWallpaper.grid_settings.row_offset  = 50;
+
+
+
 }
 
 function wallpaper_background() {
-  background(151, 222, 177); //light honeydew green colour
+  background(30, 30, 50);
+
+ 
 }
 
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
-//line(0,50,200,50)
-//line(0,100,200,100)
-//line(0,150,200,150)
-for (let i=0;i<heartNum;i++) {
+c1=color(154,122,204,150)
+c2=color(204,122,131,131)
+c3=color(122,131,204,120)
+c4=color(151,209,145,180)
+c5=color(155,210,146,80)
+c6=color(220,209,131,160)
+c7=color(159,226,245,200)
+c8=color(122,131,204,180)
+c9=color(231,244,78,200)
+  let myColors=[c1,c2,c3,c4,c5,c6,c7,c8,c9];
+  let randomColor=random(myColors)
+ //draw background stars
+ strokeWeight(0.2)
+ fill(randomColor,random(150,200)) 
+for(i=0;i<starcount;i++){
+    let xPos=random(20,180)
+    let yPos=random(20,180)
+ 
+ push()
+ 
+translate(xPos,yPos)
+  
+drawbackgroundstar()
+pop()}
+function drawbackgroundstar(){
+stroke(randomColor)
+ strokeWeight(1)
+ fill(randomColor)
+ beginShape()
+ curveVertex(0,0)
+ curveVertex(0,0)
+ curveVertex(0,0)
+ curveVertex(-10,-22)
+ curveVertex(-30,-50)
+ curveVertex(-30,-50)
 
-
-drawHeart(x,y,size)}
-drawPanda()
+ endShape()
+ push() 
+ rotate(36)
+ strokeWeight(0.2)
+ fill(randomColor,random(150,200)) 
+  for (let i=0; i<5; i++) {
+ellipse(0,0,starSize/3,starSize*1.5)
+rotate(72)
+  } 
+  fill(220,200,200,200)
+  ellipse(0,0,starSize/2,starSize/2) 
+  pop()
 }
+  
+ 
 
-function drawHeart(x,y,size) {
-size=random(2,8)
-x=random(0,200)
-y=random(0,200)
-stroke(207, 91, 116)
-strokeWeight(1)
-    fill(255, 182, 193,random(150, 255))
-    push()
-    translate(x,y)
-    beginShape()
-    vertex(0,-size*0.8);
-    bezierVertex(size,-size*1.5,size*1.5,0,0,size*1.2)
-    bezierVertex(-size * 1.5, 0,-size, -size * 1.5,0, -size * 0.8
-      );
+drawStar()
+
+  }
+  function drawStar() {
+noStroke()
+   translate(midx,midy)
+   
+   angleMode(DEGREES)
+   beginShape()
+       fill(255,215,0,210)
+
+      let firstOuterX = outerR * cos(-90);
+      let firstOuterY = outerR * sin(-90);
+      vertex(firstOuterX, firstOuterY);
+      for(let i=0;i<5;i++) {
+        //outpoint(present)
+        let outerAngle = 360 * i / 5 -180;
+        let outerX = outerR * cos(outerAngle);
+        let outerY = outerR * sin(outerAngle);
+        //innerpoint(present)
+        let innerAngle = 360 * (i + 0.5) / 5 -180;
+        let innerX = innerR * cos(innerAngle);
+        let innerY = innerR * sin(innerAngle);
+        //nextinnerpoint
+        let nextInnerAngle = 360* (i + 1.5) / 5-45;
+        let nextInnerX = innerR * cos(nextInnerAngle);
+        let nextInnerY = innerR * sin(nextInnerAngle);
+        //caculatet the control point(from inner-outpoint)
+        let cp1x = lerp(innerX, outerX, smoothness);
+        let cp1y = lerp(innerY, outerY, smoothness);
+        let cp2x = lerp(outerX, nextInnerX, smoothness);
+        let cp2y = lerp(outerY, nextInnerY, smoothness);
+        //drawbezier1
+        bezierVertex(cp1x, cp1y, cp2x, cp2y, nextInnerX, nextInnerY)
+        //draw next outpoint
+        let nextOuterAngle = 360 * (i+1) / 5 -90;
+        let nextOuterX = outerR * cos(nextOuterAngle);
+        let nextOuterY = outerR * sin(nextOuterAngle);
+        //caculate
+        let cp3x = lerp(nextInnerX, nextOuterX, smoothness);
+        let cp3y = lerp(nextInnerY, nextOuterY, smoothness);
+        //draw another bezier
+        bezierVertex(cp3x, cp3y, cp3x, cp3y, nextOuterX, nextOuterY);
+      }
+      
       endShape(CLOSE);
-      pop();
-    
-}
-function drawPanda() {
-    //head
-    fill('white')
-    stroke(0)
-    strokeWeight(2)
-    ellipse(100,100,165,150)
+      
+     
 
-    //ears
-    fill(0)
+
+  drawStarEmotion()    
+    } 
+  function drawStarEmotion(){
+    if (emotionType===0) {
+    //middle look right down
+    translate(0,0)
+    stroke(255)
+    strokeWeight(2)
+    let eyePosx=midx/40-20
+    let eyePosy=midy/40+5
+    fill('black')
     noStroke()
-    ellipse(50,50-earPosition/2,60,50)//left
-    ellipse(150,50-earPosition/2,60,50)//right
-    //eyes
-    fill(0)
-    ellipse(70,90,eyeSize,eyeSize*1.5)//left black
-    ellipse(130,90,eyeSize,eyeSize*1.5)//right black
-    fill(46, 37, 29,200)
-    ellipse(eyePositionX,eyePositionY,eyeSize/2,eyeSize/2)//left eyes
-    ellipse(eyePositionX+60,eyePositionY,eyeSize/2,eyeSize/2)//right eyes
-    
-    //if
-    if (showSparkle) {
-        fill(235, 200, 169,80)
-        noStroke()
-        ellipse(eyePositionX-eyeSize/16,eyePositionY,eyeSize/8,eyeSize/8)//left
-        ellipse(eyePositionX+60-eyeSize/16,eyePositionY,eyeSize/8,eyeSize/8)//right      
-    }
-    //nose
-    
-    fill(0)
-    ellipse(100,115,25,20,190)
-    beginShape()
-    stroke(48, 47, 47)//light blace
-    strokeWeight(1)
+    ellipse(eyePosx/2,eyePosy,4,6)//left eye
+    ellipse(eyePosx/2+30,eyePosy,4,6)//right eye
 
-    //mouse
-    angleMode(DEGREES)
-    stroke(0)
-    strokeWeight(2)
-    noFill()
-    if (mouthType === 0) {
-        //sm
-        arc(100,130,60,40,0,180)
+    } else if(emotionType===1) {
 
-    } else if (mouthType===1) {
-        //superised
-        stroke(232, 220, 223)
-        strokeWeight(2)
-        fill(237, 109, 137,180)
-        
-        ellipse(100,145,40,30,180,360)
-} else {
-    //UNHAPPY
-    strokeWeight(1.3)
-    arc(100,145,40,30,180,360)
-    let earPosition=30
-}
-    //BLUSH
-    if (blush>0) {
-        noStroke()
-        fill(255,150,150,blush*2.5)
-        //left
-        ellipse(50,120,30,20)
-        ellipse(150,120,30,20)
-
+    //line(midx/40-20,midy/40,midx/40+20,midy/40)
+    //look up
+    let eyePosx=midx/40-20
+    let eyePosy=midy/40+5
+    translate(-20,-20)
+    //line(midx/40,midy/40,midx/40+25,midy/40)
+    fill('black')
+    noStroke()
+    ellipse(eyePosx/3,eyePosy/2,4,6)//left eye
+    ellipse(eyePosx/3+30,eyePosy/2,4,6)//right eye
 
     }
+    else {
+    //look left down
+    let eyePosx=midx/40-20
+    let eyePosy=midy/40+5
+    translate(10,10)
+    //line(midx/40-30,midy/40,midx/40-5,midy/40)
+    fill('black')
+    noStroke()
+    ellipse(eyePosx*2,eyePosy,4,6)//left eye
+    ellipse(eyePosx*2+30,eyePosy,4,6)//right eye
+    }
 
-}
+
+
+
+    
+  }  
+  
+
 
 
 
