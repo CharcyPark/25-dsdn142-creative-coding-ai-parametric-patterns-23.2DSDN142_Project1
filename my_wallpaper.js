@@ -1,14 +1,13 @@
 //your parameter variables go here!
-let W=200
-let H=200
-let seedCount=30
-let seedLength=30
-let stemHeight=80
-let fluffiness=1.1//from 0.3-1.5 
-//if control
-let wind=true
-let windPower=50
-
+let isRaining=true
+let h=200
+let w=200
+let leafCount=4
+let rainCount=60
+let pondDepth=0.5
+let size=30
+let midx=100
+let midy=100
 
 function setup_wallpaper(pWallpaper) {
   //pWallpaper.output_mode(DEVELOP_GLYPH);
@@ -27,130 +26,118 @@ function setup_wallpaper(pWallpaper) {
 }
 
 function wallpaper_background() {
-  background(196, 242, 199); 
+  background(152, 179, 159); 
   
 }
 
 function my_symbol() { // do not rename this function. Treat this similarly to a Draw function
-
-//draw ground
-let from= color(42, 110, 189)
-
-noStroke()
-fill(from)
-rect(0,H*9/10,W,H)//bottem
-
-
-drawsky()
-drawStem();
+drawPond()
 
 
 }
 
-
-function drawsky(){
-let from= color(42, 110, 189)
-let to =color(84, 150, 220)
-let interA= lerpColor(from,to,0.2)
-let interB= lerpColor(from,to,0.4)
-noStroke()
-fill(from)
-rect(0,0,W,H*2/10)//top rec
-
-fill(interA)
-rect(0,H*2/10,W,H*3/10)
-
-fill(interB)
-rect(0,H*3/10,W,H*4/10)
-
-fill(to)
-rect(0,H*4/10,W,H*5/10)
-
-  }
-function drawStem(){
-      stroke(159, 191, 160,170);
-      strokeWeight(4);
-      beginShape();
-      curveVertex(W/2, H);
-      curveVertex(W/2, H);
-      curveVertex(W/2, H/2+50);
-      curveVertex(W/2+5, H/2+20);
-      curveVertex(W/2, H - stemHeight);
-      curveVertex(W/2, H - stemHeight);
-      endShape()
-  drawhead()    
-
+function drawPond(){
+for(let y=0;y<h;y++){
+  let inter=lerp(pondDepth,0.2,y/h)
+  stroke(30,70,100,255*inter)
+  line(0,y,w,y)
 }
-function drawhead(){
-  stroke(242, 240, 235,random(150,200));
-  strokeWeight(2);
-  for (let i = 0; i < 20; i++) {
-      let size = random(1, 3);
-      let x = 100 + random(-5, 5);
-      let y = 200 - stemHeight + random(-5, 5);
-      point(x, y);
-            }
-  //draw seed
-      stroke(255, 255, 255, 180);
-      strokeWeight(1);
-      angleMode(DEGREES)      
-      for (let i = 0; i < seedCount; i++) {
-          const angle = (i / seedCount) * 360;
-                
-   // if control
-      let seedAngle = angle;
-      if (wind) {
-          seedAngle += 180/4 * (windPower/30);
-                //seedangle=seedangle+x
-                
-      const baseX = 100;
-      const baseY = 200 - stemHeight;
-      const endX = baseX + cos(seedAngle) * seedLength * fluffiness;
-      const endY = baseY + sin(seedAngle) * seedLength * fluffiness;
-                
-      // draw lines
-        line(baseX, baseY, endX, endY);
-                
-      // seed point
-        stroke(255, 255, 255);
-        point(endX, endY);
-      //flying  
-      push()
-        noFill()
-      stroke(247, 240, 220 )
-      strokeWeight(1)
-      for(let i=0;i<10;i++) {
-        angleMode(DEGREES)
-        translate(W/3,H/10)
-        push()
-        curve(0,0,random(3,6),20,20,20,20,-20)
-        stroke(247, 240, 220)
-        strokeWeight(2)
-        point(20,20)
-        
 
-
-        pop()
-        rotate(30)}
-      
-        pop()
-        
-} else{
-  seedAngle += 180/4 * (windPower/30);
-                //seedangle=seedangle+x
-                
-      const baseX = 100;
-      const baseY = 200 - stemHeight;
-      const endX = baseX + cos(seedAngle) * seedLength * fluffiness;
-      const endY = baseY + sin(seedAngle) * seedLength * fluffiness;
-                
-      // draw lines
-        line(baseX, baseY, endX, endY);
-                
-      // seed point
-        stroke(255, 255, 255);
-        point(endX, endY);
-
+if (isRaining){
+  drawRain()
 }
+drawLotusLeaves()
+}
+function drawLotusLeaves(){
+  
+  fill(20,80,50,150)
+stroke(10,50,30)
+strokeWeight(1)
+angleMode(DEGREES)
+let yPos=random(80,170)
+let xPos=20
+
+for(let leaf=0;leaf<leafCount; leaf++){
+  fill(20,80,50,random(140,180))
+stroke(10,50,30)
+strokeWeight(1)
+  xPos +=size+random(10,30)
+  yPos=random(80,170)
+  
+
+
+  beginShape()
+  for(let angle=0; angle<360;angle+=180/8){
+  let r = size * (0.8 + random(0.2));
+  let offsetX = cos(angle) * r;
+  let offsetY = sin(angle) * r * 0.7;
+  curveVertex(xPos+offsetX,yPos+offsetY)
+}
+endShape(CLOSE)
+
+//lines on leaves
+noFill();
+stroke(30, 100, 60); // light green
+strokeWeight(0.5);
+
+ 
+for (let i = 0; i < 8; i++) {
+   let angle = i * 180/4;
+  beginShape();
+  
+    curveVertex(xPos, yPos);
+    curveVertex(xPos, yPos);
+
+   
+for (let r = 5; r < size * 0.8; r += 5) {
+  
+  let offsetX = cos(angle) * r;
+  let offsetY = sin(angle) * r * 0.7;    
+  let bend = sin(r/10) * 5;
+      curveVertex(xPos + offsetX + bend, yPos + offsetY + bend);
       }
-    }
+      curveVertex(xPos + cos(angle) * size * 0.8, yPos + sin(angle) * size * 0.8);
+  endShape();}
+  
+};
+ drawTadpole()
+}
+function drawTadpole(){
+ 
+  
+ push()
+ fill(0,0,0,190)
+ noStroke()
+ ellipse(midx,midy,10,6)
+ stroke(0,0,0,190)
+ strokeWeight(1.5)
+ noFill()
+
+ angleMode(DEGREES)
+ bezier(midx+4,midy+1,midx+10,midy+8,midx+10,midy-10,midx+15,midy+4)
+  translate(midx,midy)
+  fill(0,0,0,190)
+ noStroke()
+ ellipse(midx,midy,10,6)
+
+ bezier(midx+4,midy+1,midx+10,midy+8,midx+10,midy-10,midx+15,midy+4)
+rotate(15)
+ pop()
+}
+
+
+
+  
+    
+
+function drawRain() {
+  
+    stroke(180, 220, 255, 100); // light blue
+    strokeWeight(1);
+            
+    for (let i = 0; i < 50; i++) {
+        let x = random(w);
+        let y = random(h);
+        line(x, y, x + 5, y + 15);
+            }
+}
