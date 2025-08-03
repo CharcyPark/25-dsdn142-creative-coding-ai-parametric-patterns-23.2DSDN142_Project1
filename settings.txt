@@ -141,5 +141,46 @@ function setup_wallpaper(pWallpaper) {
 
 }
 Wallpaper 6:
+//your parameter variables go here!
+let W=200
+let H=200
+let fireLightSize;
+let fireCount=33
+let fireworkSize=20
+let fireworkNum=80
+let c1;
+let c2;
+let c3;
+let c4;
+let c5;
+let c6;
+let c7;
+let c8;
+let c9;
+//if control
+let fireworks=true
+
+
+function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  
+  pWallpaper.resolution(FIT_TO_SCREEN);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
+
+  //Grid settings
+  pWallpaper.grid_settings.cell_width  = 200;
+  pWallpaper.grid_settings.cell_height = 200;
+  pWallpaper.grid_settings.row_offset  = 50;
+
+
+
+}
+
+function wallpaper_background() {
+  background(17,24,42); 
+  
+}
+
 
 
