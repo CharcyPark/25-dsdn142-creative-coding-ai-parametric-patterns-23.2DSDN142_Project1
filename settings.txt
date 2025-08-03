@@ -43,6 +43,8 @@ function setup_wallpaper(pWallpaper) {
   pWallpaper.grid_settings.cell_height = 100;
   pWallpaper.grid_settings.row_offset  = 0;
 }
+
+
 Wallpaper3 Panda
 //your parameter variables go here!
 let eyeSize=29
@@ -75,3 +77,28 @@ function setup_wallpaper(pWallpaper) {
 function wallpaper_background() {
   background(151, 222, 177); //light honeydew green colour
 }
+
+Wallpaper4:
+
+//your parameter variables go here!
+//position control
+let midx=100
+let midy=100
+//size control
+let outerR=50
+let innerR=outerR*0.7
+//corner style control
+let smoothness=0.8
+//if control eye direction to show different emotions
+let emotionType=0 //0,1,otherNum
+let c1;
+let c2;
+let c3;
+let c4;
+let c5;
+let c6;
+let c7;
+let c8;
+let c9;
+let starSize=10//background stars
+let starcount=50//background stars
