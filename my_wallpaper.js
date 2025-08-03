@@ -14,13 +14,16 @@ let c6;
 let c7;
 let c8;
 let c9;
-
+//if control
+let fireworks=true
+let particleCount=60
+let maxSize=fireworkSize*1.5
 
 function setup_wallpaper(pWallpaper) {
   //pWallpaper.output_mode(DEVELOP_GLYPH);
   pWallpaper.output_mode(GRID_WALLPAPER);
   
-  pWallpaper.resolution(A3);
+  pWallpaper.resolution(FIT_TO_SCREEN);
   pWallpaper.show_guide(false); //set this to false when you're ready to print
 
   //Grid settings
@@ -113,12 +116,7 @@ function drawFireworksN(){
   drawFireworks();//draw sigle fire
   pop()
 }
-
   
-
-
-  fill(220,200,200,150)
-  ellipse(0,0,fireworkSize/2,fireworkSize/2)
 
 }
 function drawFlyingFire(){
@@ -161,8 +159,9 @@ rotate(72)
   fill(220,200,200,200)
   ellipse(0,0,fireLightSize/2,fireLightSize/2) 
   pop()}
+  function drawFireworks(){
+if(fireworks) {
 
-function drawFireworks(){
   angleMode(DEGREES)
   c1=color(154,122,204,150)
 c2=color(204,122,131,131)
@@ -180,7 +179,7 @@ let myColors=[c1,c2,c3,c4,c5,c6,c7,c8,c9];
  strokeWeight(0.2)
  fill(randomColor,random(150,200))
   
-  for (let i=0; i<10; i++) {
+  for (let i=0; i<8; i++) {
 ellipse(0,0,fireworkSize/8,fireworkSize*4)
 noStroke()
 
@@ -188,19 +187,36 @@ rotate(72)
   } 
   fill(randomColor,200)
   ellipse(0,0,fireworkSize/8,fireworkSize/8) 
-  pop()
-}
-
-
-
-
-
-
-
-    
-
+  pop()} 
+  else {
+    angleMode(DEGREES)
+  c1=color(154,122,204,150)
+  c2=color(204,122,131,131)
+  c3=color(122,131,204,120)
+  c4=color(151,209,145,180)
+  c5=color(155,210,146,80)
+  c6=color(220,209,131,160)
+  c7=color(159,226,245,200)
+  c8=color(122,131,204,180)
+  c9=color(231,244,78,200)
+  let myColors=[c1,c2,c3,c4,c5,c6,c7,c8,c9];
+  let randomColor=random(myColors)
+ push() 
+ rotate(45)
+ strokeWeight(0.2)
+ fill(randomColor,random(150,200))
   
+  for (let i=0; i<5; i++) {
+ellipse(0,0,fireworkSize/2,fireworkSize)
+noStroke()
 
+rotate(72)
+  } 
+  fill('white')
+  ellipse(0,0,fireworkSize/4,fireworkSize/4) 
+  pop()
+ 
 
+    }
 
-
+  }
