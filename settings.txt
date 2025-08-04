@@ -1,48 +1,67 @@
 Wallpaper 1:Star
 
 //your parameter variables go here!
-let rect_width  = 20;
-let rect_height = 20;
-let paramter1 = 10;
-let paramter2 = true;
-let paramter3 = 50; 
-let paramter4 = 0; 
-let paramter5 = 60;
+let W=200
+let H=200
+let starSize=6
+let starCount=80
+let c1;
+let c2;
+let c3;
+let c4;
+let c5;
+let c6;
+let c7;
+let c8;
+let c9;
+
 
 function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
   pWallpaper.output_mode(GRID_WALLPAPER);
-  pWallpaper.resolution(NINE_LANDSCAPE);
+  
+  pWallpaper.resolution(A3);
   pWallpaper.show_guide(false); //set this to false when you're ready to print
 
   //Grid settings
-  pWallpaper.grid_settings.cell_width  = 100;
-  pWallpaper.grid_settings.cell_height = 100;
+  pWallpaper.grid_settings.cell_width  = 200;
+  pWallpaper.grid_settings.cell_height = 200;
   pWallpaper.grid_settings.row_offset  = 50;
+
+
+
 }
 
-/////////////////////////////////
+function wallpaper_background() {
+  background(17,24,42); 
+  
+}
 
 Wallpaper 2: Orange
 
-//your parameter variables go here!
-let rect_width  = 10;
-let rect_height = 10;
-let paramter1 = 20;
-let paramter2 = false;
-let paramter3 = 50; 
-let paramter4 = 80; 
-let paramter5 = 30;
+let orangeSize = 76;
+let shinePos = 30;
+let showShine = true;
+let midX = 100;
+let midY = 100;
+let y = 10; 
 
 function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
   pWallpaper.output_mode(GRID_WALLPAPER);
+  
   pWallpaper.resolution(NINE_LANDSCAPE);
-  pWallpaper.show_guide(false); //set this to false when you're ready to print
-
-  //Grid settings
-  pWallpaper.grid_settings.cell_width  = 100;
-  pWallpaper.grid_settings.cell_height = 100;
-  pWallpaper.grid_settings.row_offset  = 0;
+  pWallpaper.show_guide(false);
+  
+  pWallpaper.grid_settings.cell_width = 200;
+  pWallpaper.grid_settings.cell_height = 200;
+  pWallpaper.grid_settings.row_offset = 50;
 }
+
+function wallpaper_background() {
+  background(255, 255, 127);
+}
+
 
 
 Wallpaper3 Panda
@@ -249,7 +268,51 @@ function wallpaper_background() {
   
 }
 wallpaper9:
+//your parameter variables go here!
+//position control
+let midx=100
+let midy=100
+//size control
+let outerR=50
+let innerR=outerR*0.9
+//corner style control
+let smoothness=0.9
+//if control eye direction to show different emotions
+let emotionType=2 //0,1,2,otherNum
+let c1;
+let c2;
+let c3;
+let c4;
+let c5;
+let c6;
+let c7;
+let c8;
+let c9;
+let myColors=[]
+let flowerSize=8//background stars
+let flowercount=200//background 
+let heartsize=8
+function setup_wallpaper(pWallpaper) {
+  //pWallpaper.output_mode(DEVELOP_GLYPH);
+  pWallpaper.output_mode(GRID_WALLPAPER);
+  
+  pWallpaper.resolution(FIT_TO_SCREEN);
+  pWallpaper.show_guide(false); //set this to false when you're ready to print
 
+  //Grid settings
+  pWallpaper.grid_settings.cell_width  = 200;
+  pWallpaper.grid_settings.cell_height = 200;
+  pWallpaper.grid_settings.row_offset  = 50;
+
+
+
+}
+
+function wallpaper_background() {
+  background(30, 30, 50);
+
+ 
+}
 
 
 
